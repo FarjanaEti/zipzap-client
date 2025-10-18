@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import AuthContext from './AuthContext';
-import { Children } from 'react';
-import {  createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import React, { Children, useEffect, useState } from 'react';
+//import { Children } from 'react';
+import {  createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from '../Firebase/firebase.init';
-import { GoogleAuthProvider } from 'firebase/auth/web-extension';
+import { AuthContext } from './AuthContext';
 
-const AuthProvider = () => {
+const AuthProvider = ({children}) => {
+
 const googleProvider= new GoogleAuthProvider()
 
      const [user,setUser]=useState()
@@ -26,8 +26,8 @@ const googleProvider= new GoogleAuthProvider()
         return signOut(auth);
     }
 
-    const signInWithgoogle=()=>{
-      signInWithPopup(auth,googleProvider)
+    const signInWithGoogle=()=>{
+      signInWithPopup(auth, googleProvider)
     }
 
      useEffect(() => {// it's a observer
@@ -45,14 +45,14 @@ const googleProvider= new GoogleAuthProvider()
      const info={
           createUser,
           signIn,
-          signInWithgoogle,
+          signInWithGoogle,
           logOut,
           user,
           loading,
      }                         
  return (
          <AuthContext value={info}>
-              {Children}                                                                            
+              {children}                                                                         
          </AuthContext>
                               );
 };
