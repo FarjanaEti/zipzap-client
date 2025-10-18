@@ -5,7 +5,7 @@ import Logo from './Logo';
 const Navbar = () => {
    const list=<>
    <li><NavLink to="/">Home</NavLink></li>
-   <li><NavLink>Home2</NavLink></li>
+   <li><NavLink to='coverage'>Coverage</NavLink></li>
    <li><NavLink>Home3</NavLink></li>
    </>
 
